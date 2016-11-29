@@ -1,0 +1,40 @@
+<div ng-controller="dashController">
+	<div class="col-md-4">
+		<div class="panel">
+			 <nvd3 options="options_pirads" data="pirads_final"></nvd3>
+			<div class="panel-caption">PIRADS Score by Frequency</div>
+			<div class="panel-footer">
+				{{footer_caption}}
+				<btn class="btn btn-xs pull-right ogl-chart btn-success" ng-click="ogl()">Original</btn></i></div>
+		</div>
+	</div>
+
+	<div class="col-md-4">
+		<div class="panel">
+			 <nvd3 options="options_gleason" data="gleason_final"></nvd3>
+			<div class="panel-caption">GLEASON Score by Frequency</div>
+			<div class="panel-footer">
+				{{footer_caption}}
+				<btn class="btn btn-xs pull-right ogl-chart btn-success" ng-click="ogl()">Original</btn></i></div>
+		</div>
+	</div>
+
+	<div class="col-md-4">
+		<div class="panel">
+			<nvd3 options="options_sector" data="sector_final"></nvd3>
+			<div class="panel-caption">Sectors affected by Frequency</div>
+			<div class="panel-footer">
+				{{footer_caption}}
+				<btn class="btn btn-xs pull-right ogl-chart btn-success" ng-click="ogl()">Original</btn></i></div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="panel">
+			<nvd3 options="options_lesion" data="lesion_final"></nvd3>
+			<div class="panel-caption">Lesion Size Distribution (in cm)</div>
+			<div class="panel-footer">
+				{{footer_caption}}
+				<btn class="btn btn-xs pull-right ogl-chart btn-success" ng-click="ogl()">Original</btn></i></div>
+		</div>
+	</div>
+</div>

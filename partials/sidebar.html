@@ -1,0 +1,87 @@
+<!-- sidebar -->
+<div class="col-md-3" ng-controller="dashController">
+  <div class="sidebar  glAnim">
+    <ul class="sidebar-items">
+      <li class="sidebar-item"><i class="fa  fa-bar-chart"></i> <span style="border-bottom:2px solid rgb(254, 186, 18)">Key Statistics</span>
+      	<div id="accordion" role="tablist">
+		  <div class="card">
+    <div class="card-header" role="tab" id="headingOne">
+      <h5 class="mb-0">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+          PIRADS Score  <i class="fa fa-caret-down"></i>
+        </a>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="card-block">
+        <table>
+        	<tr>
+        		<th>PIRADS Score</th>
+        		<th>Frequency</th>
+        	</tr>
+        	<tr ng-repeat="row in pirads_final | orderBy:'-value'">
+        		<td>{{row.label}}</td>
+        		<td>{{row.value}}</td>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab" id="headingTwo">
+      <h5 class="mb-0">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          GLEASON Score  <i class="fa fa-caret-down"></i>
+        </a>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+       <div class="card-block">
+        <table>
+        	<tr>
+        		<th>GLEASON Score</th>
+        		<th>Frequency</th>
+        	</tr>
+        	<tr ng-repeat="row in gleason_final | orderBy:'-value'">
+        		<td>{{row.label}}</td>
+        		<td>{{row.value}}</td>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab" id="headingThree">
+      <h5 class="mb-0">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Lesion Size  <i class="fa fa-caret-down"></i>
+        </a>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+       <div class="card-block">
+        <table>
+        	<tr>
+        		<th>Lesion Size (in cm)</th>
+        		<th>Frequency</th>
+        	</tr>
+        	<tr ng-repeat="row in lesion_final | orderBy:'-label'">
+        		<td>{{row.label}}</td>
+        		<td>{{row.value}}</td>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+      </li>
+      <li class="sidebar-item"><i class="fa  fa-pencil"></i> Latest Articles</li>
+      <li class="sidebar-item"><i class="fa  fa-archive"></i> Research Archives</li>
+      <li class="sidebar-item"><i class="fa  fa-lightbulb-o"></i> Explore Research</li>
+      <li class="sidebar-item"><i class="fa  fa-group"></i> Get Involved</li>
+    </ul>
+  </div>
+</div>
