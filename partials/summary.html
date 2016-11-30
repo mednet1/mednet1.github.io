@@ -1,40 +1,78 @@
-<div ng-controller="dashController">
-	<div class="col-md-4">
-		<div class="panel">
-			 <nvd3 options="options_pirads" data="pirads_final"></nvd3>
-			<div class="panel-caption">PIRADS Score by Frequency</div>
-			<div class="panel-footer">
-				{{footer_caption}}
-				<btn class="btn btn-xs pull-right ogl-chart btn-success" ng-click="ogl()">Original</btn></i></div>
+<div ng-controller="dashController" class=" large-box">
+	<div class="chart-panels">
+		<div class="col-md-4">
+			<div class="panel">
+				 <nvd3 options="options_pirads" data="pirads_final"></nvd3>
+				<div class="panel-caption">PIRADS Score by Frequency</div>
+				<div class="panel-footer">
+					<div class="pull-left">{{footer_caption}}</div>
+					<div class="pull-right">
+						<i class="fa fa-undo icon" ng-click="ogl()"></i>
+						<i class="fa fa-table icon" ng-click="table(5)"></i>
+					</div>
+				</div>
+					
+			</div>
 		</div>
+
+		<div class="col-md-4">
+			<div class="panel">
+				 <nvd3 options="options_gleason" data="gleason_final"></nvd3>
+				<div class="panel-caption">GLEASON Score by Frequency</div>
+				<div class="panel-footer">
+					<div class="pull-left">{{footer_caption}}</div>
+					<div class="pull-right">
+						<i class="fa fa-undo icon" ng-click="ogl()"></i>
+						<i class="fa fa-table icon" ng-click="table(6)"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			<div class="panel">
+				<nvd3 class="icon" options="options_sector" data="sector_final"></nvd3>
+				<div class="panel-caption">Sectors affected by Frequency</div>
+				<div class="panel-footer">
+					<div class="pull-left">{{footer_caption}}</div>
+					<div class="pull-right">
+						<i class="fa fa-undo icon" ng-click="ogl()"></i>
+						<i class="fa fa-table icon" ng-click="table(4)"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="panel">
+				<nvd3 class="icon" options="options_lesion" data="lesion_final"></nvd3>
+				<div class="panel-caption">Lesion Size Distribution (in cm)</div>
+				<div class="panel-footer">
+					<div class="pull-left">{{footer_caption}}</div>
+					<div class="pull-right">
+						<i class="fa fa-undo icon" ng-click="ogl()"></i>
+						<i class="fa fa-table icon" ng-click="table(3)"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		  <!-- Table -->
+	<div class="modal-down col-md-12">
+	<i class="fa fa-times fa-2x pull-right icon" ng-click="close_modal()"></i>
+	  <pre>Showing Page {{currentPage}} of {{numPages}}</pre>
+	  <table class="table" ng-table="tableParams">
+		  <thead>
+		  	<tr>
+		  		<th>{{labels[0]}}</th>  
+		  		<th>{{labels[selected_key]}}</th>  
+		  	</tr>
+		  </thead>
+		  <tr ng-repeat="datum in data2.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
+		  	<td ng-repeat = "cell in datum track by $index" ng-bind-html="cell"></td>  
+		  </tr>
+	  </table>
+	  <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" class="pagination-sm col-md-push-4 col-md-4" items-per-page="itemsPerPage"></pagination>
 	</div>
 
-	<div class="col-md-4">
-		<div class="panel">
-			 <nvd3 options="options_gleason" data="gleason_final"></nvd3>
-			<div class="panel-caption">GLEASON Score by Frequency</div>
-			<div class="panel-footer">
-				{{footer_caption}}
-				<btn class="btn btn-xs pull-right ogl-chart btn-success" ng-click="ogl()">Original</btn></i></div>
-		</div>
-	</div>
 
-	<div class="col-md-4">
-		<div class="panel">
-			<nvd3 options="options_sector" data="sector_final"></nvd3>
-			<div class="panel-caption">Sectors affected by Frequency</div>
-			<div class="panel-footer">
-				{{footer_caption}}
-				<btn class="btn btn-xs pull-right ogl-chart btn-success" ng-click="ogl()">Original</btn></i></div>
-		</div>
-	</div>
-	<div class="col-md-4">
-		<div class="panel">
-			<nvd3 options="options_lesion" data="lesion_final"></nvd3>
-			<div class="panel-caption">Lesion Size Distribution (in cm)</div>
-			<div class="panel-footer">
-				{{footer_caption}}
-				<btn class="btn btn-xs pull-right ogl-chart btn-success" ng-click="ogl()">Original</btn></i></div>
-		</div>
-	</div>
 </div>

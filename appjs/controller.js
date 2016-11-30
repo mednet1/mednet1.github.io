@@ -38,7 +38,20 @@ $scope.init_values = function()
   $scope.hashmap = {};
   $scope.hashmap['sector'] = "sector";
   $scope.hashmap['lesion_size'] = "lesion_size";
+  $scope.hashmap[5] = "PIRADS_score";
+  $scope.hashmap[6] = "GLEASON_score";
+  $scope.hashmap[4] = "sector";
+  $scope.hashmap[3] = "lesion_size";
 
+  // labels for tables
+  $scope.labels = {};
+  $scope.labels[0] = "Patient ID";
+  $scope.labels[1] = "PSA";
+  $scope.labels[2] = "Prostate Volume";
+  $scope.labels[3] = "Lesion Size";
+  $scope.labels[4] = "Sector";
+  $scope.labels[5] = "PIRADS Score";
+  $scope.labels[6] = "GLEASON Score";
   $scope.pirads = {};
   $scope.gleason = {};
   $scope.sector = {};
@@ -101,21 +114,54 @@ $scope.ogl = function()
 {
   $http({method: 'GET', url: 'sample-data.csv'}).success(function(data)
            {
+
                      $scope.data1 = csvJSON(data);
-                     console.log($scope.data1);
                      $scope.data1 = JSON.parse($scope.data1);
                      // add random values to data
-                     for(var i = 0; i< $scope.data1.length; i++)
+                     for(var i = 0; i < $scope.data1.length; i++)
                      {
                       var idx = Math.floor(Math.random() * $scope.project.length);
                       $scope.data1[i].access = $scope.access[Math.floor(Math.random() * $scope.access.length)];
                       $scope.data1[i].project_long = $scope.project[idx].long;
                       $scope.data1[i].project_short = $scope.project[idx].short;
                       $scope.data1[i].category = $scope.category[Math.floor(Math.random() * $scope.category.length)];
+                      $scope.data1[i].format = "TXT";
+                      $scope.data1[i].size = (Math.random() * 100 + 400).toFixed(2)+" KB";
+                      $scope.data1[i].annotations = Math.ceil(Math.random() * 2);
                      }
                      $scope.all_data_function($scope.data1);
                      $scope.set_pagination();
                      });
+};
+
+// show tables
+$scope.table = function(col_id)
+{
+  $scope.selected_key = col_id;
+  $scope.data2 = [];
+  for(var i = 0; i < $scope.data1.length; i++)
+  {
+    var col = $scope.hashmap[col_id];
+    console.log(col);
+    console.log($scope.data1[i].patient_ID+" "+$scope.data1[i][col]);
+    $scope.data2.push([$scope.data1[i].patient_ID,$scope.data1[i][col]]); 
+  }
+  $scope.open_modal();
+};
+
+// modal
+$scope.open_modal = function()
+{
+  $(".modal-down").show();
+  $(".chart-panels").hide();
+  $(".footer").addClass("toBottom");
+};
+
+$scope.close_modal = function()
+{
+  $(".modal-down").hide();
+  $(".chart-panels").show();
+  $(".footer").removeClass("toBottom");
 };
 
 $scope.showTab = function(tabId)
@@ -131,6 +177,7 @@ $scope.showTab = function(tabId)
     }, 0);
 
 };
+
 
 // functions for data handling
 $scope.all_data_function = function(subset_data)
@@ -193,6 +240,9 @@ $scope.ogl();
 // tabs
 $scope.selectedTab = 1;
 $("#tab1").addClass("tab-active");
+
+// modal
+$scope.close_modal();
 
 // nvd3 charts
 // onclick

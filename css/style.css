@@ -269,6 +269,7 @@ ul.tabs{
 }
 .icon{
 	cursor: pointer;
+	margin-right: 10px;
 }
 svg.nvd3-svg{
 	height:250px !important;
@@ -358,4 +359,17 @@ svg.nvd3-svg{
 }
 .tooltip-table{
 	padding:0 !important;
+}
+.large-box{
+	position: relative;
+}
+.large-box .modal-down{
+	position: absolute;
+	top:50px;
+	background-color: #E6E6E6;
+	padding-top:10px;
+	z-index: 99999;
+}
+.modal-down .table td{
+	width:50%;
 }
