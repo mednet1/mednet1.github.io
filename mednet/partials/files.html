@@ -1,0 +1,30 @@
+<div ng-controller="dashController">
+	
+	  <!-- Table -->
+	  <pre>Showing Page {{currentPage}} of {{numPages}}</pre>
+	  <table class="table" ng-table="tableParams">
+		  <thead>
+		  	<tr>
+		  		<th>Access</th>  
+		  		<th>File Name</th>  
+		  		<th>Cases</th>  
+		  		<th>Project</th>  
+		  		<th>Data Category</th>  
+		  		<th>Data Format</th>  
+		  		<th>Size</th>  
+		  		<th>Annotations</th>
+		  	</tr>
+		  </thead>
+		  <tr ng-repeat="datum in data1.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
+		  	<td ng-bind-html="datum.access"></td>  
+		  	<td>{{datum.patient_ID}}</td>
+		  	<td>1</td>
+		  	<td><a href="#" data-toggle="tooltip" title="{{datum.project_long}}" tooltip>{{datum.project_short}}</a></td>
+		  	<td>{{datum.category}}</td>
+		  	<td>PDF</td>
+		  	<td>500KB</td>
+		  	<td>1</td>
+		  </tr>
+	  </table>
+	  <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" class="pagination-sm col-md-push-4 col-md-4" items-per-page="itemsPerPage"></pagination>
+</div>
